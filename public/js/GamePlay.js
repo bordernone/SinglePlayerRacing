@@ -77,6 +77,13 @@ class RacingTrack {
             this.height + this.wallWidth
         );
 
+        // Strides
+        this.sketch.fill("black");
+        this.sketch.rectMode(this.sketch.CENTER);
+        for (let i = 0; i < this.height; i += 100) {
+            this.sketch.rect(this.x + this.width / 2, this.y + i, 10, 50);
+        }
+
         // draw obstacles
         for (let i = 0; i < this.obstacles.length; i++) {
             this.obstacles[i].draw();
