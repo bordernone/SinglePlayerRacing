@@ -18,6 +18,12 @@ let AUDIO_FILES = {
 
 let SOUNDS = {};
 
+let IMAGE_FILES = {
+    game_start_bg: "assets/images/game_start_bg.jpg",
+};
+
+let IMAGES = {};
+
 // on load
 window.onload = function () {
     // get name from local storage
@@ -92,6 +98,8 @@ const GameOverScreen = () => {
         // Preload
         sketch.preload = function () {
             SOUNDS.game_over = sketch.loadSound(AUDIO_FILES.game_over);
+            // Load images
+            IMAGES.game_start_bg = sketch.loadImage(IMAGE_FILES.game_start_bg);
         };
 
         // Setup
@@ -99,9 +107,16 @@ const GameOverScreen = () => {
             // center canvas to the screen
             sketch.createCanvas(frameWidth, frameHeight);
 
-            sketch.background(0);
+            if (SOUNDS.game_over && !SOUNDS.game_over.isPlaying()) {
+                SOUNDS.game_over.play();
+            }
+        };
 
-            sketch.background(0);
+        // Draw
+        sketch.draw = function () {
+            // draw background image
+            sketch.background(IMAGES.game_start_bg);
+
             sketch.fill("white");
             sketch.textSize(32);
             // center text
@@ -115,13 +130,6 @@ const GameOverScreen = () => {
                 sketch.height / 2 + 50
             );
 
-            if (SOUNDS.game_over && !SOUNDS.game_over.isPlaying()) {
-                SOUNDS.game_over.play();
-            }
-        };
-
-        // Draw
-        sketch.draw = function () {
             // If scoreResponse is not null
             sketch.fill("white");
             if (scoreResponse) {
@@ -150,25 +158,44 @@ const GameOverScreen = () => {
             // Draw reactangle with text "Play again"
             sketch.fill("white");
             sketch.rectMode(sketch.CENTER);
-            sketch.rect(sketch.width / 2, sketch.height / 2 + 200, 100, 50);
+            sketch.rect(sketch.width / 2, sketch.height / 2 + 150, 100, 50);
             sketch.fill("black");
             sketch.textSize(16);
             sketch.textAlign(sketch.CENTER, sketch.CENTER);
             sketch.text(
                 "Play again",
                 sketch.width / 2,
-                sketch.height / 2 + 200
+                sketch.height / 2 + 150
             );
+
+            // Draw rectangle with text "Main Menu"
+            sketch.fill("white");
+            sketch.rectMode(sketch.CENTER);
+            sketch.rect(sketch.width / 2, sketch.height / 2 + 210, 100, 50);
+            sketch.fill("black");
+            sketch.textSize(16);
+            sketch.textAlign(sketch.CENTER, sketch.CENTER);
+            sketch.text("Main Menu", sketch.width / 2, sketch.height / 2 + 210);
 
             // If mouse is pressed, check if mouse is over "Play again" button
             if (sketch.mouseIsPressed) {
                 if (
                     sketch.mouseX > sketch.width / 2 - 50 &&
                     sketch.mouseX < sketch.width / 2 + 50 &&
-                    sketch.mouseY > sketch.height / 2 + 200 - 25 &&
-                    sketch.mouseY < sketch.height / 2 + 200 + 25
+                    sketch.mouseY > sketch.height / 2 + 150 - 25 &&
+                    sketch.mouseY < sketch.height / 2 + 150 + 25
                 ) {
                     GamePlayScreen();
+                }
+
+                if (
+                    sketch.mouseX > sketch.width / 2 - 50 &&
+                    sketch.mouseX < sketch.width / 2 + 50 &&
+                    sketch.mouseY > sketch.height / 2 + 210 - 25 &&
+                    sketch.mouseY < sketch.height / 2 + 210 + 25
+                ) {
+                    // navigate to /index.html
+                    window.location.href = "index.html";
                 }
             }
         };
@@ -186,6 +213,9 @@ const GameStartScreen = () => {
             SOUNDS.game_start_screen = sketch.loadSound(
                 AUDIO_FILES.game_start_screen
             );
+
+            // Load images
+            IMAGES.game_start_bg = sketch.loadImage(IMAGE_FILES.game_start_bg);
         };
 
         // Setup
@@ -193,12 +223,13 @@ const GameStartScreen = () => {
             // center canvas to the screen
             sketch.createCanvas(frameWidth, frameHeight);
 
-            sketch.background(0);
+            // Draw background image
+            sketch.background(IMAGES.game_start_bg);
             sketch.fill("white");
             sketch.textSize(32);
             // center text
             sketch.textAlign(sketch.CENTER, sketch.CENTER);
-            sketch.text("Racing Game", sketch.width / 2, sketch.height / 2);
+            sketch.text("The Racing Game", sketch.width / 2, sketch.height / 2);
             sketch.textSize(16);
             sketch.text(
                 "Click to start",
