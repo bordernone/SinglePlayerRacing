@@ -90,6 +90,22 @@ class Car {
         // If up key is pressed, move car
         if (this.sketch.keyIsDown(this.sketch.UP_ARROW)) {
             this.move();
+
+            // Stop Idle sound
+            if (SOUNDS.car_idle.isPlaying()) {
+                SOUNDS.car_idle.stop();
+            }
+
+            if (!SOUNDS.car_running.isPlaying()) {
+                SOUNDS.car_running.play();
+            }
+        } else {
+            if (SOUNDS.car_running.isPlaying()) {
+                SOUNDS.car_running.stop();
+            }
+            if (!SOUNDS.car_idle.isPlaying()) {
+                SOUNDS.car_idle.play();
+            }
         }
 
         // Check if car is colliding with any obstacles

@@ -8,6 +8,16 @@ let frameWidth = 800;
 let playerName;
 let scoreResponse;
 
+// Globally Available
+let AUDIO_FILES = {
+    car_running: "assets/audio/car_running.mp3",
+    game_start_screen: "assets/audio/game_start_screen.mp3",
+    game_over: "assets/audio/game_over.mp3",
+    car_idle: "assets/audio/car_idle.mp3",
+};
+
+let SOUNDS = {};
+
 // on load
 window.onload = function () {
     // get name from local storage
@@ -17,7 +27,7 @@ window.onload = function () {
         window.location.href = "index.html";
     }
 
-    GameOverScreen();
+    GameStartScreen();
 };
 
 const GamePlayScreen = () => {
@@ -26,6 +36,13 @@ const GamePlayScreen = () => {
     if (gameStartInstance) gameStartInstance.remove();
     gameState = "playing";
     gamePlayInstance = new p5(function (sketch) {
+        // Preload
+        sketch.preload = function () {
+            // Load car running sound
+            SOUNDS.car_running = sketch.loadSound(AUDIO_FILES.car_running);
+            SOUNDS.car_idle = sketch.loadSound(AUDIO_FILES.car_idle);
+        };
+
         // Setup
         sketch.setup = function () {
             // center canvas to the screen
@@ -72,6 +89,11 @@ const GameOverScreen = () => {
     SubmitScore();
 
     gameOverInstance = new p5(function (sketch) {
+        // Preload
+        sketch.preload = function () {
+            SOUNDS.game_over = sketch.loadSound(AUDIO_FILES.game_over);
+        };
+
         // Setup
         sketch.setup = function () {
             // center canvas to the screen
@@ -92,6 +114,10 @@ const GameOverScreen = () => {
                 sketch.width / 2,
                 sketch.height / 2 + 50
             );
+
+            if (SOUNDS.game_over && !SOUNDS.game_over.isPlaying()) {
+                SOUNDS.game_over.play();
+            }
         };
 
         // Draw
@@ -154,6 +180,14 @@ const GameStartScreen = () => {
     if (gamePlayInstance) gamePlayInstance.remove();
     gameState = "gameStart";
     gameStartInstance = new p5(function (sketch) {
+        // Preload
+        sketch.preload = function () {
+            // Load audio files
+            SOUNDS.game_start_screen = sketch.loadSound(
+                AUDIO_FILES.game_start_screen
+            );
+        };
+
         // Setup
         sketch.setup = function () {
             // center canvas to the screen
@@ -178,6 +212,14 @@ const GameStartScreen = () => {
             // If mouse is pressed, start game
             if (sketch.mouseIsPressed) {
                 GamePlayScreen();
+            }
+
+            // Play audio
+            if (
+                SOUNDS.game_start_screen &&
+                !SOUNDS.game_start_screen.isPlaying()
+            ) {
+                SOUNDS.game_start_screen.play();
             }
         };
     }, document.getElementById("app"));
