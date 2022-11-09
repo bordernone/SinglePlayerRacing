@@ -260,7 +260,7 @@ const GameStartScreen = () => {
             sketch.textSize(32);
             // center text
             sketch.textAlign(sketch.CENTER, sketch.CENTER);
-            sketch.text("The Racing Game", sketch.width / 2, sketch.height / 2);
+            sketch.text("Racing Master", sketch.width / 2, sketch.height / 2);
             sketch.textSize(16);
             sketch.text(
                 "Click to start",
