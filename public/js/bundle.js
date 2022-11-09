@@ -92,6 +92,26 @@ const GamePlayScreen = () => {
             if (gameState === "playing") {
                 racingTrack.draw();
                 car.draw();
+
+                // Draw rectangle on top right corner
+                sketch.rectMode(sketch.CENTER);
+                sketch.fill("black");
+                sketch.rect(sketch.width - 50, 25, 100, 50);
+
+                // Display score inside rectangle
+                sketch.fill("white");
+                sketch.textSize(16);
+                // font weight bold
+                sketch.textStyle(sketch.BOLD);
+                sketch.textAlign(sketch.CENTER, sketch.CENTER);
+                sketch.text(
+                    "Score: " + coinsCollected,
+                    sketch.width - 50,
+                    25,
+                    100,
+                    50
+                );
+                
             }
         };
     }, document.getElementById("app"));
