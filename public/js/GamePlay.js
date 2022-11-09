@@ -46,7 +46,7 @@ class RacingTrack {
                 for (let j = 0; j < this.obstacles.length; j++) {
                     let obstacle = this.obstacles[j];
                     let d = sketch.dist(coinX, coinY, obstacle.x, obstacle.y);
-                    if (d < obstacle.width) {
+                    if (d < obstacle.height) {
                         overlapping = true;
                     }
                 }
@@ -102,8 +102,8 @@ class Car {
         this.sketch = sketch;
         this.x = x;
         this.y = y;
-        this.width = 20;
-        this.height = 20;
+        this.width = 24;
+        this.height = 50;
 
         this.track = track;
     }
@@ -118,6 +118,8 @@ class Car {
         this.sketch.fill("white");
         this.sketch.rectMode(this.sketch.CENTER);
         this.sketch.rect(this.x, this.y - 5, this.width - 10, this.height - 10);
+        
+
 
         // If up key is pressed, move car
         if (this.sketch.keyIsDown(this.sketch.UP_ARROW)) {
@@ -191,32 +193,30 @@ class Obstacle {
         this.sketch = sketch;
         this.x = x;
         this.y = y;
-        this.width = 30;
-        this.height = 30;
+        this.width = 24;
+        this.height = 50;
 
         this.track = track;
     }
 
     draw() {
-        // Create obstacle looking like a tree
-        this.sketch.fill("green");
-        this.sketch.triangle(
-            this.x + this.track.x,
-            this.track.y + this.y - this.height / 2,
+        // Draw obstacle image
+        this.sketch.image(
+            IMAGES.obstacle,
             this.x + this.track.x - this.width / 2,
-            this.track.y + this.y + this.height / 2,
-            this.x + this.track.x + this.width / 2,
-            this.track.y + this.y + this.height / 2
+            this.track.y + this.y - this.height / 2,
+            this.width,
+            this.height
         );
     }
 
     hasHit(car) {
         // Check if car has hit obstacle
         if (
-            car.x + car.width / 2 > this.x + this.track.x - this.width / 2 &&
-            car.x - car.width / 2 < this.x + this.track.x + this.width / 2 &&
-            car.y + car.height / 2 > this.track.y + this.y - this.height / 2 &&
-            car.y - car.height / 2 < this.track.y + this.y + this.height / 2
+            car.x + car.width / 2 >= this.x + this.track.x - this.width / 2 &&
+            car.x - car.width / 2 <= this.x + this.track.x + this.width / 2 &&
+            car.y + car.height / 2 >= this.track.y + this.y - this.height / 2 &&
+            car.y - car.height / 2 <= this.track.y + this.y + this.height / 2
         ) {
             return true;
         }
@@ -235,11 +235,11 @@ class Coin {
     }
 
     draw() {
-        // Draw object looking like a coin
-        this.sketch.fill("orange");
-        this.sketch.ellipse(
-            this.x + this.track.x,
-            this.track.y + this.y,
+        // Draw image coin
+        this.sketch.image(
+            IMAGES.coin,
+            this.x + this.track.x - this.width / 2,
+            this.track.y + this.y - this.height / 2,
             this.width,
             this.height
         );
@@ -248,10 +248,10 @@ class Coin {
     hasHit(car) {
         // Check if car has hit coin
         if (
-            car.x + car.width / 2 > this.x + this.track.x - this.width / 2 &&
-            car.x - car.width / 2 < this.x + this.track.x + this.width / 2 &&
-            car.y + car.height / 2 > this.track.y + this.y - this.height / 2 &&
-            car.y - car.height / 2 < this.track.y + this.y + this.height / 2
+            car.x + car.width / 2 >= this.x + this.track.x - this.width / 2 &&
+            car.x - car.width / 2 <= this.x + this.track.x + this.width / 2 &&
+            car.y + car.height / 2 >= this.track.y + this.y - this.height / 2 &&
+            car.y - car.height / 2 <= this.track.y + this.y + this.height / 2
         ) {
             return true;
         }

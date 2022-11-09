@@ -21,6 +21,9 @@ let SOUNDS = {};
 
 let IMAGE_FILES = {
     game_start_bg: "assets/images/game_start_bg.jpg",
+    coin: "assets/images/coin.png",
+    obstacle: "assets/images/obstacle.png",
+    car: "assets/images/car.png",
 };
 
 let IMAGES = {};
@@ -51,6 +54,11 @@ const GamePlayScreen = () => {
             SOUNDS.car_running = sketch.loadSound(AUDIO_FILES.car_running);
             SOUNDS.car_idle = sketch.loadSound(AUDIO_FILES.car_idle);
             SOUNDS.coin_hit = sketch.loadSound(AUDIO_FILES.coin_hit);
+
+            // Load images
+            IMAGES.coin = sketch.loadImage(IMAGE_FILES.coin);
+            IMAGES.obstacle = sketch.loadImage(IMAGE_FILES.obstacle);
+            IMAGES.car = sketch.loadImage(IMAGE_FILES.car);
         };
 
         // Setup
