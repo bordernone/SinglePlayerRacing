@@ -6,6 +6,7 @@ class RacingTrack {
         this.width = width;
         this.height = trackHeight;
 
+        this.coins = [];
         this.obstacles = [];
         this.velocity = 0.1;
         this.maxVelocity = 5;
@@ -27,6 +28,32 @@ class RacingTrack {
             );
 
             this.obstacles.push(obstacle);
+        }
+
+        // Randomly generate coins
+        for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
+            let xRange = [15, this.width - 15];
+            let yRange = [0, this.height - sketch.height];
+
+            let coinX, coinY;
+
+            // Check if coin is not overlapping with obstacle
+            let overlapping;
+            do {
+                coinX = sketch.random(xRange[0], xRange[1]);
+                coinY = sketch.random(yRange[0], yRange[1]);
+                overlapping = false;
+                for (let j = 0; j < this.obstacles.length; j++) {
+                    let obstacle = this.obstacles[j];
+                    let d = sketch.dist(coinX, coinY, obstacle.x, obstacle.y);
+                    if (d < obstacle.width) {
+                        overlapping = true;
+                    }
+                }
+            } while (overlapping);
+
+            let coin = new Coin(sketch, coinX, coinY, _this);
+            this.coins.push(coin);
         }
     }
 
@@ -50,9 +77,14 @@ class RacingTrack {
             this.height + this.wallWidth
         );
 
-        // draw and move obstacles
+        // draw obstacles
         for (let i = 0; i < this.obstacles.length; i++) {
             this.obstacles[i].draw();
+        }
+
+        // draw and move coins
+        for (let i = 0; i < this.coins.length; i++) {
+            this.coins[i].draw();
         }
 
         // If UP key is pressed, move track
@@ -114,6 +146,16 @@ class Car {
                 GameOverScreen();
             }
         }
+
+        // Check if car is colliding with any coins
+        for (let i = 0; i < this.track.coins.length; i++) {
+            if (this.track.coins[i].hasHit(this)) {
+                SOUNDS.coin_hit.play();
+
+                this.track.coins.splice(i, 1);
+                coinsCollected++;
+            }
+        }
     }
 
     moveLeft() {
@@ -170,6 +212,41 @@ class Obstacle {
 
     hasHit(car) {
         // Check if car has hit obstacle
+        if (
+            car.x + car.width / 2 > this.x + this.track.x - this.width / 2 &&
+            car.x - car.width / 2 < this.x + this.track.x + this.width / 2 &&
+            car.y + car.height / 2 > this.track.y + this.y - this.height / 2 &&
+            car.y - car.height / 2 < this.track.y + this.y + this.height / 2
+        ) {
+            return true;
+        }
+    }
+}
+
+class Coin {
+    constructor(sketch, x, y, track) {
+        this.sketch = sketch;
+        this.x = x;
+        this.y = y;
+        this.width = 30;
+        this.height = 30;
+
+        this.track = track;
+    }
+
+    draw() {
+        // Draw object looking like a coin
+        this.sketch.fill("orange");
+        this.sketch.ellipse(
+            this.x + this.track.x,
+            this.track.y + this.y,
+            this.width,
+            this.height
+        );
+    }
+
+    hasHit(car) {
+        // Check if car has hit coin
         if (
             car.x + car.width / 2 > this.x + this.track.x - this.width / 2 &&
             car.x - car.width / 2 < this.x + this.track.x + this.width / 2 &&

@@ -2,11 +2,11 @@ let gameState = "playing";
 let racingTrack;
 let car;
 let gamePlayInstance, gameOverInstance, gameStartInstance;
-let gameStartTime, gameEndTime;
 let frameHeight = 600;
 let frameWidth = 800;
 let playerName;
 let scoreResponse;
+let coinsCollected = 0;
 
 // Globally Available
 let AUDIO_FILES = {
@@ -14,6 +14,7 @@ let AUDIO_FILES = {
     game_start_screen: "assets/audio/game_start_screen.mp3",
     game_over: "assets/audio/game_over.mp3",
     car_idle: "assets/audio/car_idle.mp3",
+    coin_hit: "assets/audio/coin_hit.mp3",
 };
 
 let SOUNDS = {};
@@ -37,16 +38,19 @@ window.onload = function () {
 };
 
 const GamePlayScreen = () => {
-    gameStartTime = Date.now();
     if (gameOverInstance) gameOverInstance.remove();
     if (gameStartInstance) gameStartInstance.remove();
     gameState = "playing";
+
+    coinsCollected = 0;
+
     gamePlayInstance = new p5(function (sketch) {
         // Preload
         sketch.preload = function () {
             // Load car running sound
             SOUNDS.car_running = sketch.loadSound(AUDIO_FILES.car_running);
             SOUNDS.car_idle = sketch.loadSound(AUDIO_FILES.car_idle);
+            SOUNDS.coin_hit = sketch.loadSound(AUDIO_FILES.coin_hit);
         };
 
         // Setup
@@ -86,11 +90,11 @@ const GamePlayScreen = () => {
 };
 
 const GameOverScreen = () => {
-    gameEndTime = Date.now();
     if (gamePlayInstance) gamePlayInstance.remove();
     if (gameStartInstance) gameStartInstance.remove();
     gameState = "gameOver";
 
+    console.log(coinsCollected);
     scoreResponse = null;
     SubmitScore();
 
@@ -124,8 +128,7 @@ const GameOverScreen = () => {
             sketch.text("Game Over", sketch.width / 2, sketch.height / 2);
             sketch.textSize(16);
             sketch.text(
-                "Your Score: " +
-                    Math.floor((gameEndTime - gameStartTime) / 1000),
+                "Your Score: " + coinsCollected,
                 sketch.width / 2,
                 sketch.height / 2 + 50
             );
@@ -258,7 +261,7 @@ const GameStartScreen = () => {
 
 const SubmitScore = () => {
     // get score
-    let score = Math.floor((gameEndTime - gameStartTime) / 1000);
+    let score = coinsCollected;
     // post score
     fetch("/api/scores", {
         method: "POST",
