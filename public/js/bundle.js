@@ -6,6 +6,7 @@ let gameStartTime, gameEndTime;
 let frameHeight = 600;
 let frameWidth = 800;
 let playerName;
+let scoreResponse;
 
 // on load
 window.onload = function () {
@@ -16,7 +17,7 @@ window.onload = function () {
         window.location.href = "index.html";
     }
 
-    GameStartScreen();
+    GameOverScreen();
 };
 
 const GamePlayScreen = () => {
@@ -67,6 +68,7 @@ const GameOverScreen = () => {
     if (gameStartInstance) gameStartInstance.remove();
     gameState = "gameOver";
 
+    scoreResponse = null;
     SubmitScore();
 
     gameOverInstance = new p5(function (sketch) {
@@ -94,27 +96,51 @@ const GameOverScreen = () => {
 
         // Draw
         sketch.draw = function () {
+            // If scoreResponse is not null
+            sketch.fill("white");
+            if (scoreResponse) {
+                let highScoreBroken = scoreResponse.highScoreBroken;
+                if (highScoreBroken) {
+                    // Display new high score
+                    sketch.textSize(16);
+                    sketch.textAlign(sketch.CENTER, sketch.CENTER);
+                    sketch.text(
+                        "New High Score!",
+                        sketch.width / 2,
+                        sketch.height / 2 + 100
+                    );
+                } else {
+                    // Display high score
+                    sketch.textSize(16);
+                    sketch.textAlign(sketch.CENTER, sketch.CENTER);
+                    sketch.text(
+                        "High Score: " + scoreResponse.highScore.toString(),
+                        sketch.width / 2,
+                        sketch.height / 2 + 100
+                    );
+                }
+            }
+
             // Draw reactangle with text "Play again"
             sketch.fill("white");
             sketch.rectMode(sketch.CENTER);
-            sketch.rect(sketch.width / 2, sketch.height / 2 + 100, 100, 50);
+            sketch.rect(sketch.width / 2, sketch.height / 2 + 200, 100, 50);
             sketch.fill("black");
             sketch.textSize(16);
             sketch.textAlign(sketch.CENTER, sketch.CENTER);
             sketch.text(
                 "Play again",
                 sketch.width / 2,
-                sketch.height / 2 + 100
+                sketch.height / 2 + 200
             );
 
             // If mouse is pressed, check if mouse is over "Play again" button
             if (sketch.mouseIsPressed) {
-                // If mouse is over "Play again" button, start game
                 if (
                     sketch.mouseX > sketch.width / 2 - 50 &&
                     sketch.mouseX < sketch.width / 2 + 50 &&
-                    sketch.mouseY > sketch.height / 2 + 75 &&
-                    sketch.mouseY < sketch.height / 2 + 125
+                    sketch.mouseY > sketch.height / 2 + 200 - 25 &&
+                    sketch.mouseY < sketch.height / 2 + 200 + 25
                 ) {
                     GamePlayScreen();
                 }
@@ -173,6 +199,7 @@ const SubmitScore = () => {
     })
         .then((res) => res.json())
         .then((data) => {
+            scoreResponse = data;
             console.log(data);
         })
         .catch((err) => {

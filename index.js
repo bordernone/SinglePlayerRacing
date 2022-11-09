@@ -37,13 +37,38 @@ app.get("/api/get-scores", (req, res) => {
 
 app.post("/api/scores", (req, res) => {
     const { name, score } = req.body;
-    db.insert({ name, score }, (err, doc) => {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.status(200).send(doc);
-        }
-    });
+    if (name === undefined || score === undefined) {
+        res.status(400).send("Invalid request");
+    } else {
+        let currentHighScore = 0;
+
+        // Get high score
+        db.find({})
+            .sort({ score: -1 })
+            .limit(1)
+            .exec((err, docs) => {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    if (docs.length > 0) {
+                        currentHighScore = docs[0].score;
+                    }
+
+                    // Save score and name to db
+                    db.insert({ name, score }, (err, newDoc) => {
+                        if (err) {
+                            res.status(500).send(err);
+                        } else {
+                            res.send({
+                                ...newDoc,
+                                highScore: Math.max(currentHighScore, score),
+                                highScoreBroken: score > currentHighScore,
+                            });
+                        }
+                    });
+                }
+            });
+    }
 });
 
 app.use(express.static("public"));
