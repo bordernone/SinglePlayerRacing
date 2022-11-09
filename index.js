@@ -23,14 +23,27 @@ app.get("/api/get-scores", (req, res) => {
     if (n === undefined) {
         n = 10;
     }
+
     db.find({})
         .sort({ score: -1 })
-        .limit(n)
         .exec((err, docs) => {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.send(docs);
+                let playerNames = new Set();
+                let scores = [];
+                for (const doc of docs) {
+                    if (!playerNames.has(doc.name)) {
+                        playerNames.add(doc.name);
+                        scores.push(doc);
+                    }
+
+                    if (scores.length >= n) {
+                        break;
+                    }
+                }
+
+                res.send(scores);
             }
         });
 });
