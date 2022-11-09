@@ -24,6 +24,7 @@ let IMAGE_FILES = {
     coin: "assets/images/coin.png",
     obstacle: "assets/images/obstacle.png",
     car: "assets/images/car.png",
+    arrow_keys: "assets/images/arrow-keys.png",
 };
 
 let IMAGES = {};
@@ -111,7 +112,6 @@ const GamePlayScreen = () => {
                     100,
                     50
                 );
-                
             }
         };
     }, document.getElementById("app"));
@@ -247,6 +247,7 @@ const GameStartScreen = () => {
 
             // Load images
             IMAGES.game_start_bg = sketch.loadImage(IMAGE_FILES.game_start_bg);
+            IMAGES.arrow_keys = sketch.loadImage(IMAGE_FILES.arrow_keys);
         };
 
         // Setup
@@ -283,6 +284,15 @@ const GameStartScreen = () => {
             ) {
                 SOUNDS.game_start_screen.play();
             }
+
+            // Display text "Controls"
+            sketch.fill("white");
+            sketch.textSize(16);
+            sketch.textAlign(sketch.CENTER, sketch.CENTER);
+            sketch.text("Controls", sketch.width / 2, sketch.height / 2 + 100);
+
+            // Display arrow keys image
+            sketch.image(IMAGES.arrow_keys, sketch.width / 2 - 100, sketch.height / 2 + 120, 200, 100);
         };
     }, document.getElementById("app"));
 };
