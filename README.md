@@ -261,7 +261,7 @@ const SubmitScore = () => {
 };
 ```
 
-After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. The derived function is below:
+After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. This algorithm worked well we drew the car using various shapes. However, we replaced it with a car image, the collosion detection became unreliable. The derived function is below:
 
 ```javascript
  hasHit(car) {
@@ -277,6 +277,35 @@ After setting up our database, I also helped with the collision detection system
 }
 ```
 
+In addition, I assisted with spawing random obstacles and coins on the track. Spawning random objects on *p5js* canvas was easy, but making sure that they do not overlap was another story. I needed to tried different range values to be randomized in order to make the obstacles and coins spawn randomly and not overlapped. Besides trying differernt randomized values, a function was implemented to check that a coin won't overlap an obstacle when spawned. For the obstacles, it is important that is enough space for the car to navigate through. 
+
+```javascript
+ // Randomly generate coins
+for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
+    let xRange = [15, this.width - 15];
+    let yRange = [0, this.height - sketch.height];
+
+    let coinX, coinY;
+
+    // Check if coin is not overlapping with obstacle
+    let overlapping;
+    do {
+        coinX = sketch.random(xRange[0], xRange[1]);
+        coinY = sketch.random(yRange[0], yRange[1]);
+        overlapping = false;
+        for (let j = 0; j < this.obstacles.length; j++) {
+            let obstacle = this.obstacles[j];
+            let d = sketch.dist(coinX, coinY, obstacle.x, obstacle.y);
+            if (d < obstacle.height) {
+                overlapping = true;
+            }
+        }
+    } while (overlapping);
+
+    let coin = new Coin(sketch, coinX, coinY, _this);
+    this.coins.push(coin);
+}
+```
 
 
 
