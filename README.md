@@ -93,9 +93,12 @@ Although we managed to create different lobbies for players to join, we faced bi
 2. Collision would lag since the data would pass through the internet
 3. The game's layout was not hard coded so the coordinates for one player on one client will be different for the other client
 
-
+Thus, we decided to simplify our game to be single-player. After we successful built this version, we could upgrade it to be a multiplayer game. 
 
 ## Journey 2: Creating a single-player racing game
-After our attempto create a multiplayer racing game, we simplfied our game to a be single player. 
+### Concept
+The cocept for our revised game is very similar to the first version. The biggest change is that single-player, so players will not have to create and joins a room. They will only need to enter their name to start the race. 
+
+During the race, obstacles will be randomly spawned on the track to add difficulty and fun to the game. To motivate players to be competitive, we will have a leaderboard that show top ten players who finished the race in the shortest times. 
 
 
