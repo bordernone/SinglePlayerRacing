@@ -58,7 +58,7 @@ class RacingTrack {
     }
 
     draw() {
-        // Draw object looking like a racing track with wall on each side
+        // Race track with wall on each side
         this.sketch.fill("grey");
         this.sketch.rectMode(this.sketch.CORNER);
         this.sketch.rect(this.x, this.y, this.width, this.height);
@@ -77,7 +77,7 @@ class RacingTrack {
             this.height + this.wallWidth
         );
 
-        // Strides
+        // Strides on the track
         this.sketch.fill("black");
         this.sketch.rectMode(this.sketch.CENTER);
         for (let i = 0; i < this.height; i += 100) {
