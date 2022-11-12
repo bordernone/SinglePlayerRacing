@@ -156,7 +156,7 @@ if (this.sketch.keyIsDown(this.sketch.UP_ARROW)) {
 Initially all the objects were p5js shapes. We replaced those with `.png` images. One of the challenges (and also a limitation) was replacing the car's image itself. When we changed the p5js shapes for obstacles and coins to images, it worked fine. But using the same method, when we changed the car's shape to an image, collision detection system started to behave differently. We tried different strategies but none of them worked so we continued to use the original shape for the car. 
 
 
-#### Bishnu's Contributions and Challenges
+### Bishnu's Contributions and Challenges
 I think most of the work in this project was done together. However, here are a few things that caught my interest and thus I focused more on those. The main challenge that I faced in this project was setting up the game mechanics. Moving the car and other objects on the track was difficult. Initially, I planned to change the coordinates of the car to make it move, but I soon figured out that I should be moving the track instead which would create the same effect as moving the car. Using this technique, the obstacles would be place relative to the track and when the track is moved, the obstacles will move as well. 
 
 Track movement:
@@ -186,5 +186,8 @@ this.sketch.image(
 Furthermore, I also created three different screens (three different p5 instances: game-start, game-play, game-over) to make the design more modular. This made the process much easier as we wouldn't have to worry about re-initializing the objects if user pressed "play again" as creating a new instance will automatically discard old objects. Another challenge was the scoring system which is described above. I also configured the audio and images used in the game. For the homepage, I worked on the aesthetics and data communication between frontend and backend. Finally, I also put together each other's work and made necessary adjustment for proper integration. 
 
 In terms of learning outcomes, I have learned a lot doing this project. From handling game threads to working with inner game logic, I got a glimpse of how games are really built from scratch without using any game engine. I discovered a lot of great resources that made it possible to build this game. One of the things I am incredibly proud of is how flawless the logic of the game was and its implementation. There was 0 bugs reported by the people I asked to test the game, although it was missing some feature (like the obstacle not moving, which was actually the intension).
+
+### Pangna's Contributions and Challenges
+It is really hard to decisively divide 
 
 
