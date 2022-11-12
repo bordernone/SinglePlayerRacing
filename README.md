@@ -310,4 +310,10 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
 
 
 
+### Resources Used:
 
+1. Kilobolt.com
+2. Soundsnap.com (for all audio files)
+3. deviantart.com: [BG Image](https://www.deviantart.com/rhoogers/art/Hotline-Miami-Fan-art-522628505)
+
+Most other images were based on blueprints and were edited on an image editor to produce the ones used in the game.
