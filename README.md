@@ -319,7 +319,7 @@ Regarding the *HTML* apsect, I helped with customizing and updaing the table in 
 *In-game page*
 ![ss3](images/ss_3.png)
 
-Please refer to this [link](https://instinctive-instinctive-mist.glitch.me) to play our game.
+[Play now!](https://instinctive-instinctive-mist.glitch.me) to play our game.
 
 ### Overall Challenges
 - Collision detection: Difficult to detect when car collides with obstacles. 
