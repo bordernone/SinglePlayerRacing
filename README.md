@@ -86,7 +86,7 @@ io.on("connection", (socket) => {
 ![data_flow](images/player2.png)
 
 *Game is ready to play *
-![data_flow](images/ready-screen.png)
+![data_flow](images/ready_screen.png)
 
 
 
