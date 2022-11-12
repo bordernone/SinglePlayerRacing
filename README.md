@@ -207,32 +207,32 @@ const db = new Datastore({
 ```javascript
 let currentHighScore = 0;
 
-        // Get high score
-        db.find({})
-            .sort({ score: -1 })
-            .limit(1)
-            .exec((err, docs) => {
+// Get high score
+db.find({})
+    .sort({ score: -1 })
+    .limit(1)
+    .exec((err, docs) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (docs.length > 0) {
+                currentHighScore = docs[0].score;
+            }
+
+            // Save score and name to db
+            db.insert({ name, score }, (err, newDoc) => {
                 if (err) {
                     res.status(500).send(err);
                 } else {
-                    if (docs.length > 0) {
-                        currentHighScore = docs[0].score;
-                    }
-
-                    // Save score and name to db
-                    db.insert({ name, score }, (err, newDoc) => {
-                        if (err) {
-                            res.status(500).send(err);
-                        } else {
-                            res.send({
-                                ...newDoc,
-                                highScore: Math.max(currentHighScore, score),
-                                highScoreBroken: score > currentHighScore,
-                            });
-                        }
+                    res.send({
+                        ...newDoc,
+                        highScore: Math.max(currentHighScore, score),
+                        highScoreBroken: score > currentHighScore,
                     });
                 }
             });
+        }
+    });
 ```
 
 
