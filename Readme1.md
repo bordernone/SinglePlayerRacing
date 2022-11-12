@@ -24,7 +24,7 @@ for (let i = 0; i < this.track.coins.length; i++) {
 ```
 
 
-### Sound (From: soundsnap.com)
+### Sound
 We added multiple sound feedbacks in our game. When the user first lands onto the `/game.html` page, a background music is played on loop. This sound effect added much better feeling of the game (as some of the tester noticed) compared to without sound. During the game play, the sound of the car engine is played on loop based on whether the car is "moving" (code below). When a user collects coin, another sound is played. Finally when the car hits an obstacle (blue cars), the user is taken to game-over screen where it plays a game over sound. 
 
 Car movement sound:
