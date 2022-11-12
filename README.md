@@ -309,7 +309,7 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
 ```
 Regarding the *HTML* apsect, I helped with customizing and updaing the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the table will get updated. I also had fun with styling the apperance of our webpage. 
 
-Overall, this project allowed me to apply new concepts that we learned in class, like neDB and advanced *p5js* functions, to create a game that everyone can enjoy. After spending time conceptualizing, planning, implmenting, and debugging our game, I was so proud that many people played and provided us with many positive and constructive feedback. 
+Overall, this project provided me with an opportunity to apply new concepts that we learned in class, like neDB and advanced *p5js* functions, to create a game that everyone can enjoy. In addtion, being in group allowed our game to go through many iterations under such a short a period and be accomplisshed at the end. Thus, after spending time conceptualizing, planning, implmenting, and debugging our game, I was so proud that many people played and provided us with many positive and constructive feedback. 
 
 ### Our Game
 *Hompage*
