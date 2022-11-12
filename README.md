@@ -262,7 +262,7 @@ const SubmitScore = () => {
 };
 ```
 
-After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. This algorithm worked well we drew the car using various shapes. However, we replaced it with a car image, the collosion detection became unreliable. The derived function is below:
+After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. This algorithm worked well we drew the car using various shapes. However, we replaced it with a car image, the collision detection became unreliable. The derived function is below:
 
 ```javascript
  hasHit(car) {
@@ -278,7 +278,7 @@ After setting up our database, I also helped with the collision detection system
 }
 ```
 
-In addition, I assisted with spawing random obstacles and coins on the track. Spawning random objects on *p5js* canvas was easy, but making sure that they do not overlap was another story. I needed to tried different range values to be randomized in order to make the obstacles and coins spawn randomly and not overlapped. Besides trying differernt randomized values, a function was implemented to check that a coin won't overlap an obstacle when spawned. For the obstacles, it is important that is enough space for the car to navigate through. 
+In addition, I assisted with spawning random obstacles and coins on the track. Spawning random objects on *p5js* canvas was easy, but making sure that they willnot overlap was another story. I tried different values to randomize x and y values in order to make the obstacles and coins spawn randomly and not overlapped. Besides trying different randomized values, a function was implemented to check that a coin won't overlap an obstacle when spawned. For the obstacles, it is important that there is enough space for the car to navigate through. 
 
 ```javascript
  // Randomly generate coins
@@ -307,7 +307,7 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
     this.coins.push(coin);
 }
 ```
-Regarding the *HTML* apsect, I helped with customizing and updaing the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the table will get updated. I also had fun with styling the apperance of our webpage. 
+Regarding the *HTML* apsect, I helped with customizing and updating the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the values on the table will be changed. I also had fun with styling the apperance of our webpage. 
 
 Overall, this project provided me with an opportunity to apply new concepts that we learned in class, like neDB and advanced *p5js* functions, to create a game that everyone can enjoy. In addtion, being in group allowed our game to go through many iterations under such a short a period and be accomplisshed at the end. Thus, after spending time conceptualizing, planning, implmenting, and debugging our game, I was so proud that many people played and provided us with many positive and constructive feedback. 
 
@@ -335,7 +335,7 @@ Overall, this project provided me with an opportunity to apply new concepts that
 - Idle obstacles: Obstacles like cars should be moving toward the player's instead of being stationary
 
 ### Lessons Learned
-- Learned to use p5js sound addon, p5 instance, & images
+- Learned to use *p5js* sound addon, p5 instance, & images
 - Learned to create glowing Animations
 - Learned to use localStorage
 - Learned to use linear gradient.
