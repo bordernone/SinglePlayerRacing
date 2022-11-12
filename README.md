@@ -309,7 +309,7 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
 Regarding the *HTML* apsect, I helped with customizing and updaing the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the table will get updated.
 
 ### Our Game
-Please refer to this [link](https://www.instinctive-instinctive-mist.glitch.me) to play our game.
+Please refer to this [link](https://instinctive-instinctive-mist.glitch.me) to play our game.
 
 ### Overall Challenges
 - Collision detection: Difficult to detect when car collides with obstacles. 
