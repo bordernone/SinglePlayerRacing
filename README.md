@@ -27,3 +27,59 @@ For the in-game interface, we will use a static background and move it in a loop
 ![data_flow](images/DataFlow_Project2.png)
 
 ### Process
+
+We began to implement the socket communications between the server and clients. We wanted players to be able to create and join different rooms.
+```
+// Listen to socket connection
+io.on("connection", (socket) => {
+    console.log("a user connected: ", socket.id);
+    socket.on("disconnect", () => {
+        console.log("user disconnected: ", socket.id);
+    });
+
+    // Listen to game initialization
+    socket.on("init", async (data) => {
+        // Log init
+        console.log("init: ", data);
+
+        // Create new game
+        let game = await Game.createGame();
+        // Emit game id
+        socket.emit("init", game._id);
+    });
+
+    // Listen to player join event
+    socket.on("player-join", async (data) => {
+        let gameID = data.gameID;
+        let player = {
+            playerName: data.playerName,
+            socketID: socket.id,
+        };
+
+        try {
+            let game = await Game.getGame(gameID);
+            game.addPlayer(player.playerName, player.socketID);
+            await game.save();
+
+            // Add player to the room
+            socket.join(gameID);
+
+            // Emit to all player of this game
+            console.log("Player added to game");
+            io.to(gameID).emit("player-join", {
+                players: game.players,
+            });
+        } catch (err) {
+            socket.emit("error", err);
+        }
+    });
+
+```
+
+
+
+
+## Journey 2: Creating a single-player racing game
+After our attempto create a multiplayer racing game, we simplfied our game to a be single player. 
+
+
