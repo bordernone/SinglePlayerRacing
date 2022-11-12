@@ -88,7 +88,7 @@ In terms of learning outcomes, I have learned a lot doing this project. From han
 
 ### Resources Used:
 
-1. Kilo-bolt.com
+1. Kilobolt.com
 2. Soundsnap.com (for all audio files)
 3. deviantart.com: [BG Image](https://www.deviantart.com/rhoogers/art/Hotline-Miami-Fan-art-522628505)
 
