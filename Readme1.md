@@ -24,7 +24,7 @@ for (let i = 0; i < this.track.coins.length; i++) {
 ```
 
 
-### Sound (From: soundsnap.com)
+### Sound
 We added multiple sound feedbacks in our game. When the user first lands onto the `/game.html` page, a background music is played on loop. This sound effect added much better feeling of the game (as some of the tester noticed) compared to without sound. During the game play, the sound of the car engine is played on loop based on whether the car is "moving" (code below). When a user collects coin, another sound is played. Finally when the car hits an obstacle (blue cars), the user is taken to game-over screen where it plays a game over sound. 
 
 Car movement sound:
@@ -82,13 +82,13 @@ this.sketch.image(
 ```
 
 
-Furthermore, I also created three different screens (three different p5 instances: game-start, game-play, game-over) to make the design more modular. This made the process much easier as we wouldn't have to worry about re-initializing the objects if user pressed "play again" as creating a new instance will automatically discard old objects. Another challenge was the scoring system which is described above. I also configured the audio and images used in the game. For the homepage, I worked on the aesthetics and data communication between frontend and backend. 
+Furthermore, I also created three different screens (three different p5 instances: game-start, game-play, game-over) to make the design more modular. This made the process much easier as we wouldn't have to worry about re-initializing the objects if user pressed "play again" as creating a new instance will automatically discard old objects. Another challenge was the scoring system which is described above. I also configured the audio and images used in the game. For the homepage, I worked on the aesthetics and data communication between frontend and backend. Finally, I also put together each other's work and made necessary adjustment for proper integration. 
 
 In terms of learning outcomes, I have learned a lot doing this project. From handling game threads to working with inner game logic, I got a glimpse of how games are really built from scratch without using any game engine. I discovered a lot of great resources that made it possible to build this game. One of the things I am incredibly proud of is how flawless the logic of the game was and its implementation. There was 0 bugs reported by the people I asked to test the game, although it was missing some feature (like the obstacle not moving, which was actually the intension).
 
 ### Resources Used:
 
-1. Kilo-bolt.com
+1. Kilobolt.com
 2. Soundsnap.com (for all audio files)
 3. deviantart.com: [BG Image](https://www.deviantart.com/rhoogers/art/Hotline-Miami-Fan-art-522628505)
 
