@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
 *Player 2 joins a room*
 ![data_flow](images/player2.png)
 
-*Game is ready to play *
+*Game is ready to play*
 ![data_flow](images/ready_screen.png)
 
 
