@@ -76,7 +76,17 @@ io.on("connection", (socket) => {
     });
 
 ```
+*Player 1 creates a new room*
+![data_flow](images/player1.png)
 
+*Player 1 waits for player 2 to join*
+![data_flow](images/wait-screen.png)
+
+*Player 2 joins a room*
+![data_flow](images/player2.png)
+
+*Game is ready to play *
+![data_flow](images/ready-screen.png)
 
 
 
