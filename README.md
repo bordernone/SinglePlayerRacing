@@ -77,16 +77,21 @@ io.on("connection", (socket) => {
 
 ```
 *Player 1 creates a new room*
-![data_flow](images/player1.png)
+![p1](images/player1.png)
 
 *Player 1 waits for player 2 to join*
-![data_flow](images/wait-screen.png)
+![wait](images/wait-screen.png)
 
 *Player 2 joins a room*
-![data_flow](images/player2.png)
+![p2](images/player2.png)
 
-*Game is ready to play*
-![data_flow](images/ready_screen.png)
+*Players ready to play*
+![ready](images/ready_screen.png)
+
+Although we managed to create different lobbies for players to join, we faced bigger problems when it came to sharing data during the gameplay:
+1. Update player's position on each side was difficult because we needed to render *p5js* elements based on where the other player is on the track
+2. Collision would lag since the data would pass through the internet
+3. The game's layout was not hard coded so the coordinates for one player on one client will be different for the other client
 
 
 
