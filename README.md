@@ -315,7 +315,7 @@ Overall, this project provided me with an opportunity to apply new concepts that
 *Hompage*
 ![ss1](images/ss_1.png)
 
-*Intruction page*
+*Instruction page*
 ![ss2](images/ss_2.png)
 
 *In-game page*
