@@ -80,7 +80,7 @@ io.on("connection", (socket) => {
 ![p1](images/player1.png)
 
 *Player 1 waits for player 2 to join*
-![wait](images/wait-screen.png)
+![wait](images/wait_screen.png)
 
 *Player 2 joins a room*
 ![p2](images/player2.png)
@@ -96,6 +96,7 @@ Although we managed to create different lobbies for players to join, we faced bi
 Thus, we decided to simplify our game to be single-player. After we successful built this version, we could upgrade it to be a multiplayer game. 
 
 ## Journey 2: Creating a single-player racing game
+[### Preview](https://instinctive-instinctive-mist.glitch.me)
 ### Concept
 The cocept for our revised game is very similar to the first version. The biggest change is that single-player, so players will not have to create and join a room. They will only need to enter their name and start the race!
 
@@ -309,6 +310,15 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
 Regarding the *HTML* apsect, I helped with customizing and updaing the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the table will get updated.
 
 ### Our Game
+*Hompage*
+![ss1](images/ss_1.png)
+
+*Intruction page*
+![ss2](images/ss_2.png)
+
+*In-game page*
+![ss3](images/ss_3.png)
+
 Please refer to this [link](https://instinctive-instinctive-mist.glitch.me) to play our game.
 
 ### Overall Challenges
