@@ -261,7 +261,22 @@ const SubmitScore = () => {
 };
 ```
 
-After setting up our database, I also helped with the collision detection system in our game. 
+After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. The derived function is below:
+
+```javascript
+ hasHit(car) {
+    // Check if car has hit obstacle
+    if (
+        car.x + car.width / 2 >= this.x + this.track.x - this.width / 2 &&
+        car.x - car.width / 2 <= this.x + this.track.x + this.width / 2 &&
+        car.y + car.height / 2 >= this.track.y + this.y - this.height / 2 &&
+        car.y - car.height / 2 <= this.track.y + this.y + this.height / 2
+    ) {
+        return true;
+    }
+}
+```
+
 
 
 
