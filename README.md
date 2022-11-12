@@ -1,5 +1,5 @@
 # Project 2: Racing Master
-## Concept
+## Initial Concept
 For this project, we will create a multiplayer racing game where players compete in a car race, and the one who finishes in the shortest time wins. To make the game more challenging and fun, obstacles will be included on the road to slow down players. At the end of the race, players’ names and times will be stored on the server. The names of 10 players with the shortest times will be displayed on the leaderboard. 
 
 
@@ -23,3 +23,5 @@ For the in-game interface, we will use a static background and move it in a loop
 #### 2. Data Flow Diagram
 
 ![data_flow](images/DataFlow_Project2.png)
+
+## Revised Concept
