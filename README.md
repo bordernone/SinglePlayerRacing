@@ -29,7 +29,8 @@ For the in-game interface, we will use a static background and move it in a loop
 ### Process
 
 We began to implement the socket communications between the server and clients. We wanted players to be able to create and join different rooms.
-```
+
+```javascript
 // Listen to socket connection
 io.on("connection", (socket) => {
     console.log("a user connected: ", socket.id);
