@@ -203,7 +203,7 @@ const db = new Datastore({
 });
 ```
 
-*Get and save high scores*
+*Server: get and save high scores*
 ```javascript
 let currentHighScore = 0;
 
@@ -233,6 +233,32 @@ db.find({})
             });
         }
     });
+```
+*Client: Send data to server*
+```javascript
+const SubmitScore = () => {
+    // get score
+    let score = coinsCollected;
+    // post score
+    fetch("/api/scores", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: playerName,
+            score: score,
+        }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            scoreResponse = data;
+            console.log(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
 ```
 
 
