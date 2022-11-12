@@ -306,9 +306,34 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
     this.coins.push(coin);
 }
 ```
+Regarding the *HTML* apsect, I helped with customizing and updaing the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the table will get updated.
 
+### Our Game
+Please refer to this [link](https://www.instinctive-instinctive-mist.glitch.me) to play our game.
 
+### Overall Challenges
+- Collision detection: Difficult to detect when car collides with obstacles. 
+- Multiplayer: Syncing & Relative positioning of item on canvas was difficult
+- Overlapping objects: Difficult to spawn items without overlapping
+- Designing track: Placing strides on the track was difficult.
 
+### Current Game's Limtations
+- Single player
+- Car's physics: Car's acceleratoin is not realstic, like the car comes to a sudden stop when the control is released
+- Idle obstacles: Obstacles like cars should be moving toward the player's instead of being stationary
+
+### Lessons Learned
+- Learned to use p5js sound addon, p5 instance, & images
+- Learned to create glowing Animations
+- Learned to use localStorage
+- Learned to use linear gradient.
+
+### Future Updates
+- Multiplayer: Allow multiplayer competitions
+- 3D Version: Create 3D version of the game.
+- Car Physics: Add proper car physics: acceleration, braking, steering
+- Dynamic Obstacles: Add obstacle movement on the track
+- Performance: Reduce loading time in-between screens.
 
 ### Resources Used:
 
