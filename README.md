@@ -188,6 +188,54 @@ Furthermore, I also created three different screens (three different p5 instance
 In terms of learning outcomes, I have learned a lot doing this project. From handling game threads to working with inner game logic, I got a glimpse of how games are really built from scratch without using any game engine. I discovered a lot of great resources that made it possible to build this game. One of the things I am incredibly proud of is how flawless the logic of the game was and its implementation. There was 0 bugs reported by the people I asked to test the game, although it was missing some feature (like the obstacle not moving, which was actually the intension).
 
 ### Pangna's Contributions and Challenges
-It is really hard to decisively divide 
+It is really hard to decisively divide the contributions among ourselves since we worked together and helped each other debug many problems that came up. Thus, I will describe the parts that I spent the most time on. One of them that I focused on was setting up *neDB* to store and retrieve players' data.
+
+*Setup neDB*
+```javascript
+// import nedb
+const Datastore = require("nedb");
+
+// setup nedb
+const db = new Datastore({
+    filename: "data.db",
+    autoload: true,
+    timestampData: true,
+});
+```
+
+*Get and save high scores*
+```javascript
+let currentHighScore = 0;
+
+        // Get high score
+        db.find({})
+            .sort({ score: -1 })
+            .limit(1)
+            .exec((err, docs) => {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    if (docs.length > 0) {
+                        currentHighScore = docs[0].score;
+                    }
+
+                    // Save score and name to db
+                    db.insert({ name, score }, (err, newDoc) => {
+                        if (err) {
+                            res.status(500).send(err);
+                        } else {
+                            res.send({
+                                ...newDoc,
+                                highScore: Math.max(currentHighScore, score),
+                                highScoreBroken: score > currentHighScore,
+                            });
+                        }
+                    });
+                }
+            });
+```
+
+
+
 
 
