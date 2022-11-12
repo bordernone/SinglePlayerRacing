@@ -1,4 +1,4 @@
-# Project 2: Racing Master
+# Project 2: [Racing Master](https://instinctive-instinctive-mist.glitch.me)
 
 ## Journey 1: Attempting to create a multiplayer racing game
 ### Concept
@@ -96,7 +96,7 @@ Although we managed to create different lobbies for players to join, we faced bi
 Thus, we decided to simplify our game to be single-player. After we successful built this version, we could upgrade it to be a multiplayer game. 
 
 ## Journey 2: Creating a single-player racing game
-[### Preview](https://instinctive-instinctive-mist.glitch.me)
+### [Preview](https://instinctive-instinctive-mist.glitch.me)
 ### Concept
 The cocept for our revised game is very similar to the first version. The biggest change is that single-player, so players will not have to create and join a room. They will only need to enter their name and start the race!
 
