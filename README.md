@@ -189,7 +189,7 @@ Furthermore, I also created three different screens (three different p5 instance
 In terms of learning outcomes, I have learned a lot doing this project. From handling game threads to working with inner game logic, I got a glimpse of how games are really built from scratch without using any game engine. I discovered a lot of great resources that made it possible to build this game. One of the things I am incredibly proud of is how flawless the logic of the game was and its implementation. There was 0 bugs reported by the people I asked to test the game, although it was missing some feature (like the obstacle not moving, which was actually the intension).
 
 ### Pangna's Contributions and Challenges
-It is really hard to decisively divide the contributions among ourselves since we worked together and helped each other debug many problems that came up. Thus, I will describe the parts that I spent the most time on. One of them that I focused on was setting up *neDB* to store and retrieve players' data. Players' scores and names are stored when they finished their races. Since only the top 10 players' data is stored in our database, I needed to sort, add, and remove new players' data. I needed to check every new score with the previous records to make sure that I removed the lowest score and did not mess up the database.
+It is really hard to decisively divide the contributions among ourselves since we worked together and helped each other debug many problems that came up. Thus, I will describe the parts that I spent the most time on. One of them that I focused on was setting up *neDB* to store and retrieve players' data. Players' scores and names are stored when they finished their races. Since only the top 10 players' data is stored in our database in the first version, I needed to sort, add, and remove new players' data. I needed to check every new score with the previous records to make sure that I removed the lowest score and did not mess up the database. Later, the db was configured to store all instances of the gameplay but when requested for top scores, the top `n` scores are selected based on distinct players.
 
 *Setup neDB*
 ```javascript
@@ -262,7 +262,7 @@ const SubmitScore = () => {
 };
 ```
 
-After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. This algorithm worked well we drew the car using various shapes. However, we replaced it with a car image, the collision detection became unreliable. The derived function is below:
+After setting up our database, I also helped with the collision detection system in our game. The logic was to check whether is within the coordinates of the obstacles and coins on the track. Thus, I used the car's x coordinate with its width and the car's y coordinate with its height to check whether it comes in contact with other objects. This algorithm worked well and we drew the car using various shapes. However, we replaced it with a car image, the collision detection became unreliable. The derived function is below:
 
 ```javascript
  hasHit(car) {
@@ -278,7 +278,7 @@ After setting up our database, I also helped with the collision detection system
 }
 ```
 
-In addition, I assisted with spawning random obstacles and coins on the track. Spawning random objects on *p5js* canvas was easy, but making sure that they willnot overlap was another story. I tried different values to randomize x and y values in order to make the obstacles and coins spawn randomly and not overlapped. Besides trying different randomized values, a function was implemented to check that a coin won't overlap an obstacle when spawned. For the obstacles, it is important that there is enough space for the car to navigate through. 
+In addition, I assisted with spawning random obstacles and coins on the track. Spawning random objects on *p5js* canvas was easy, but making sure that they will not overlap was another story. I tried different values to randomize x and y values in order to make the obstacles and coins spawn randomly and not overlapped. Besides trying different randomized values, a function was implemented to check that a coin won't overlap an obstacle when spawned. For the obstacles, it is important that there is enough space for the car to navigate through. 
 
 ```javascript
  // Randomly generate coins
@@ -307,18 +307,21 @@ for (let i = 0; i < Math.floor((5 / 1000) * this.height); i++) {
     this.coins.push(coin);
 }
 ```
-Regarding the *HTML* apsect, I helped with customizing and updating the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten highscore, the values on the table will be changed. I also had fun with styling the apperance of our webpage. 
+Regarding the *HTML* aspect, I helped with customizing and updating the table in the homepage to display the top 10 players on the leaderboard. Thus, there is a new top-ten high-score, the values on the table will be changed. I also had fun with styling the appearance of our webpage. 
 
-Overall, this project provided me with an opportunity to apply new concepts that we learned in class, like neDB and advanced *p5js* functions, to create a game that everyone can enjoy. In addtion, being in group allowed our game to go through many iterations under such a short a period and be accomplisshed at the end. Thus, after spending time conceptualizing, planning, implmenting, and debugging our game, I was so proud that many people played and provided us with many positive and constructive feedback. 
+Overall, this project provided me with an opportunity to apply new concepts that we learned in class, like neDB and advanced *p5js* functions, to create a game that everyone can enjoy. In addition, being in group allowed our game to go through many iterations under such a short a period and be accomplished at the end. Thus, after spending time conceptualizing, planning, implementing, and debugging our game, I was so proud that many people played and provided us with many positive and constructive feedback. 
 
 ### Our Game
 *Hompage*
+
 ![ss1](images/ss_1.png)
 
 *Instruction page*
+
 ![ss2](images/ss_2.png)
 
 *In-game page*
+
 ![ss3](images/ss_3.png)
 
 [Play now!](https://instinctive-instinctive-mist.glitch.me)
@@ -329,9 +332,9 @@ Overall, this project provided me with an opportunity to apply new concepts that
 - Overlapping objects: Difficult to spawn items without overlapping
 - Designing track: Placing strides on the track was difficult.
 
-### Current Game's Limtations
+### Current Game's Limitations
 - Single player
-- Car's physics: Car's acceleratoin is not realstic, like the car comes to a sudden stop when the control is released
+- Car's physics: Car's acceleration is not realistic, like the car comes to a sudden stop when the control is released
 - Idle obstacles: Obstacles like cars should be moving toward the player's instead of being stationary
 
 ### Lessons Learned
